@@ -1,8 +1,8 @@
 # delegator/php
 
-[![](https://badge.imagelayers.io/delegator/php:latest.svg)](https://imagelayers.io/?images=delegator/php:latest)
+[![](https://badge.imagelayers.io/delegator/php7:latest.svg)](https://imagelayers.io/?images=delegator/php7:latest)
 
-[Debian][1] for PHP web applications, based on `debian:8.2`. Use this image as
+[Debian][1] for PHP web applications, based on `php:7.0.2-fpm`. Use this image as
 a base for your own Docker images.
 
 # Image contents
@@ -46,7 +46,7 @@ intended to be "included" belong in `/etc/nginx/snippets`.
 
 ### php-fpm
 
-The php-fpm process is listening locally on TCP port 9001.
+The php-fpm process is listening locally on TCP port 9000.
 
 ### nullmailer
 
