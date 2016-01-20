@@ -2,8 +2,10 @@ FROM php:7.0.2-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Install packages
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -q \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -qy \
+  && apt-get upgrade -qy \
+  && apt-get install -qy \
     bash nginx-full supervisor \
     mysql-client redis-tools \
     build-essential curl htop git vim wget \
@@ -14,7 +16,7 @@ RUN apt-get update -q \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-install gd \
   && apt-get clean \
-  && apt-get purge --auto-remove -qy \
+  && apt-get remove --purge -qy \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev \
   && rm -f /etc/nginx/sites-enabled/default \
