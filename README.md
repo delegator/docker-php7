@@ -1,4 +1,4 @@
-# delegator/php
+# delegator/php7
 
 [![](https://badge.imagelayers.io/delegator/php7:latest.svg)](https://imagelayers.io/?images=delegator/php7:latest)
 
