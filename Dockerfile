@@ -9,17 +9,14 @@ RUN apt-get update -q \
     bash nginx-full supervisor \
     mysql-client redis-tools \
     build-essential curl htop git vim wget \
-    nodejs-legacy ruby ruby-dev libmcrypt4 \
+    npm nodejs nodejs-legacy ruby ruby-dev libmcrypt4 \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev \
-  && apt-mark unmarkauto npm nodejs \
+  && apt-mark unmarkauto npm \
   && docker-php-ext-install bcmath curl dom hash iconv mcrypt opcache pdo pdo_mysql simplexml soap zip \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-install gd \
   && apt-get clean -qy \
-  && apt-get purge --auto-remove -qy \
-    libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
-    libpng12-dev libxml2-dev zlib1g-dev \
   && rm -f /etc/nginx/sites-enabled/default \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
