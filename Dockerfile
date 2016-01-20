@@ -9,14 +9,15 @@ RUN apt-get update -q \
     bash nginx-full supervisor \
     mysql-client redis-tools \
     build-essential curl htop git vim wget \
-    nodejs-legacy npm ruby ruby-dev libmcrypt4 \
+    nodejs-legacy ruby ruby-dev libmcrypt4 \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev \
+  && apt-mark unmarkauto npm nodejs \
   && docker-php-ext-install bcmath curl dom hash iconv mcrypt opcache pdo pdo_mysql simplexml soap zip \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-install gd \
-  && apt-get clean \
-  && apt-get remove --purge -qy \
+  && apt-get clean -qy \
+  && apt-get purge --auto-remove -qy \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev \
   && rm -f /etc/nginx/sites-enabled/default \
@@ -40,7 +41,8 @@ COPY ./config/supervisor/conf.d /etc/supervisor/conf.d
 COPY ./tester /usr/share/nginx/tester
 
 # Set working directory
-WORKDIR /srv/http
+RUN chown -R www-data:www-data /var/www
+WORKDIR /var/www
 
 # Default command
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
