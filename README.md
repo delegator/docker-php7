@@ -48,15 +48,6 @@ intended to be "included" belong in `/etc/nginx/snippets`.
 
 The php-fpm process is listening locally on TCP port 9000.
 
-### nullmailer
-
-This package is included in order to easily funnel email through your favorite
-email-as-a-service provider. Be sure to override all files under `/etc/nullmailer`.
-
-An example `remotes` entry for Amazon SES SMTP:
-
-`email-smtp.us-east-1.amazonaws.com smtp --port=587 --starttls --user=your_username_here --pass=your_password_here`
-
 [1]: https://www.debian.org/
 [2]: http://nginx.org/
 [3]: https://secure.php.net/

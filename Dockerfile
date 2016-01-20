@@ -5,19 +5,21 @@ MAINTAINER Tom Richards <tom.r@delegator.com>
 RUN apt-get update -q \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     bash nginx-full supervisor \
-    mysql-client redis-tools nullmailer \
+    mysql-client redis-tools \
     build-essential curl htop git vim wget \
     nodejs-legacy npm ruby ruby-dev libmcrypt4 \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
-    libpng12-dev libxml2-dev \
-  && docker-php-ext-install simplexml mcrypt hash dom iconv curl soap pdo pdo_mysql opcache bcmath \
+    libpng12-dev libxml2-dev zlib1g-dev \
+  && docker-php-ext-install bcmath curl dom hash iconv mcrypt opcache pdo pdo_mysql simplexml soap zip \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-install gd \
   && apt-get clean \
   && apt-get purge --auto-remove -qy \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
-    libpng12-dev libxml2-dev \
+    libpng12-dev libxml2-dev zlib1g-dev \
   && rm -f /etc/nginx/sites-enabled/default \
+  && ln -sf /dev/stdout /var/log/nginx/access.log \
+  && ln -sf /dev/stderr /var/log/nginx/error.log \
   && rm -rf /var/lib/apt \
   && rm -rf /usr/src/php
 
@@ -28,12 +30,6 @@ RUN curl -sL https://getcomposer.org/download/1.0.0-alpha11/composer.phar -o /us
     && chmod +x /usr/local/bin/n98-magerun \
     && curl -sL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp-cli \
     && chmod +x /usr/local/bin/wp-cli
-
-# nullmailer
-RUN rm -f /var/spool/nullmailer/trigger \
-  && mkfifo /var/spool/nullmailer/trigger \
-  && chown mail:root /var/spool/nullmailer/trigger \
-  && chmod 0622 /var/spool/nullmailer/trigger
 
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx
