@@ -11,20 +11,23 @@ Latest stable versions of:
 
  - [Nginx][2] web server
  - [PHP][3] with all modules required by WordPress and Magento
- - [Ruby][4], and [node.js][5] for any asset building processes you might have
+ - [Ruby][4] and [node.js][5] for any asset building processes you might have
 
 Handy PHP command-line tools:
  - [composer][6]
  - [n98-magerun][7]
  - [wp-cli][8]
 
-# Building from source
+# Building this image from source
 ```bash
-# Plain, vanilla, just-build-the-image command
+# Describe available make targets
 $ make
 
+# Plain, vanilla, just-build-the-image command
+$ make build
+
 # Ignore cache when building layers
-$ make force
+$ make build-force
 ```
 
 # Testing this image
