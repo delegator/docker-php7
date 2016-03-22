@@ -33,11 +33,9 @@ $ make build-force
 # Testing this image
 
 ```bash
-# This invokes `docker run --rm -p 3000:80 delegator/php`
+# Visit http://localhost:3000/ in your favorite browser
 $ make test
 ```
-
-...then visit `http://localhost:3000` in your favorite browser.
 
 # Customizing your derived image
 
