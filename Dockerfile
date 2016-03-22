@@ -13,7 +13,6 @@ RUN apt-get install -qy \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev
 RUN apt-mark unmarkauto npm
-RUN docker-php-ext-enable curl dom hash iconv pdo simplexml
 RUN docker-php-ext-install bcmath mcrypt opcache pdo_mysql soap zip
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
