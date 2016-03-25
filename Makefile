@@ -1,4 +1,5 @@
-.PHONY: all force help test stamp
+.PHONY: help build build-force stamp test all
+.DEFAULT_GOAL := all
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -14,3 +15,5 @@ stamp: ## Update the "image built at" timestamp
 
 test: ## Run the docker image locally for testing
 	docker run --rm -p 3000:80 delegator/php7
+
+all: build-force ## Build docker image for production
