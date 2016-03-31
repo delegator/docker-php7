@@ -1,4 +1,4 @@
-FROM php:7.0.5-fpm
+FROM php:7.0.4-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Install packages

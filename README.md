@@ -2,7 +2,7 @@
 
 [![](https://badge.imagelayers.io/delegator/php7:latest.svg)](https://imagelayers.io/?images=delegator/php7:latest)
 
-[Debian][1] for PHP web applications, based on `php:7.0.5-fpm`. Use this image as
+[Debian][1] for PHP web applications, based on `php:7.0.4-fpm`. Use this image as
 a base for your own Docker images.
 
 # Image contents
