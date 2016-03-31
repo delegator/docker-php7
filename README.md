@@ -21,13 +21,13 @@ Handy PHP command-line tools:
 # Building this image from source
 ```bash
 # Describe available make targets
-$ make
+$ make help
 
 # Plain, vanilla, just-build-the-image command
-$ make build
+$ make
 
-# Ignore cache when building layers
-$ make build-force
+# Use cache when building layers (useful for debugging)
+$ make build
 ```
 
 # Testing this image
