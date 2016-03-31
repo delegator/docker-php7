@@ -9,7 +9,7 @@ RUN apt-get install -qy \
     bash nginx-full supervisor \
     mysql-client redis-tools \
     build-essential curl htop git vim wget \
-    npm nodejs nodejs-legacy ruby ruby-dev libmcrypt4 \
+    npm nodejs nodejs-legacy ruby ruby-dev libmcrypt4 libxml2-utils \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev
 RUN apt-mark unmarkauto npm
