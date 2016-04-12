@@ -1,4 +1,4 @@
-FROM php:7.0.4-fpm
+FROM php:7.0.5-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Install packages
@@ -26,7 +26,7 @@ RUN rm -rf /usr/src/php
 # Install extra helper stuff
 RUN curl -sL https://getcomposer.org/download/1.0.0-beta1/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
-RUN curl -sL https://files.magerun.net/n98-magerun-1.97.14.phar -o /usr/local/bin/n98-magerun
+RUN curl -sL https://files.magerun.net/n98-magerun-1.97.18.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
 RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v0.22.0/wp-cli-0.22.0.phar -o /usr/local/bin/wp-cli
 RUN chmod +x /usr/local/bin/wp-cli
