@@ -7,7 +7,7 @@ RUN apt-get update -q
 RUN apt-get upgrade -qy
 RUN apt-get install -qy \
     bash nginx-full supervisor \
-    mysql-client redis-tools \
+    mysql-client redis-tools nullmailer \
     build-essential curl htop git vim wget \
     npm nodejs nodejs-legacy ruby ruby-dev libmcrypt4 libxml2-utils \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
@@ -36,6 +36,12 @@ COPY ./config/nginx /etc/nginx
 COPY ./config/php /usr/local/etc/php
 COPY ./config/supervisor/conf.d /etc/supervisor/conf.d
 COPY ./tester /usr/share/nginx/tester
+
+# nullmailer
+RUN rm -f /var/spool/nullmailer/trigger \
+  && mkfifo /var/spool/nullmailer/trigger \
+  && chown mail:root /var/spool/nullmailer/trigger \
+  && chmod 0622 /var/spool/nullmailer/trigger
 
 # Set working directory
 RUN chown -R www-data:www-data /var/www
