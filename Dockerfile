@@ -1,4 +1,4 @@
-FROM php:7.0.5-fpm
+FROM php:7.0.6-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Install packages
@@ -8,7 +8,8 @@ RUN apt-get upgrade -qy
 RUN apt-get install -qy \
     bash nginx-full supervisor \
     mysql-client redis-tools nullmailer \
-    build-essential curl htop git vim wget \
+    build-essential hardening-wrapper \
+    curl htop git vim wget \
     npm nodejs nodejs-legacy ruby ruby-dev libmcrypt4 libxml2-utils \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev
@@ -24,11 +25,11 @@ RUN rm -rf /var/lib/apt
 RUN rm -rf /usr/src/php
 
 # Install extra helper stuff
-RUN curl -sL https://getcomposer.org/download/1.0.0-beta1/composer.phar -o /usr/local/bin/composer
+RUN curl -sL https://getcomposer.org/download/1.1.0/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
-RUN curl -sL https://files.magerun.net/n98-magerun-1.97.18.phar -o /usr/local/bin/n98-magerun
+RUN curl -sL https://files.magerun.net/n98-magerun-1.97.21.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
-RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v0.22.0/wp-cli-0.22.0.phar -o /usr/local/bin/wp-cli
+RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v0.23.1/wp-cli-0.23.1.phar -o /usr/local/bin/wp-cli
 RUN chmod +x /usr/local/bin/wp-cli
 
 # Install config files and tester site
