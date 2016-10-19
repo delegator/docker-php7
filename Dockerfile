@@ -1,8 +1,21 @@
-FROM php:7.0.9-fpm
+FROM php:7.0.12-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
-# Install packages
 ENV DEBIAN_FRONTEND=noninteractive
+
+# Pre-repository setup: Add support for HTTPS repositories
+RUN apt-get update -q
+RUN apt-get install -qy apt-transport-https
+
+# Repository: Yarn package manager
+RUN apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+COPY ./config/etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list
+
+# Repository: Node.js 4
+RUN curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+COPY ./config/etc/apt/sources.list.d/nodesource.list /etc/apt/sources.list.d/nodesource.list
+
+# Install packages
 RUN apt-get update -q
 RUN apt-get upgrade -qy
 RUN apt-get install -qy \
@@ -10,10 +23,9 @@ RUN apt-get install -qy \
     mysql-client redis-tools nullmailer \
     build-essential hardening-wrapper \
     curl htop git vim wget \
-    npm nodejs nodejs-legacy ruby ruby-dev libmcrypt4 libxml2-utils \
+    nodejs yarn ruby ruby-dev libmcrypt4 libxml2-utils \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     libpng12-dev libxml2-dev zlib1g-dev
-RUN apt-mark unmarkauto npm
 RUN docker-php-ext-install bcmath mcrypt opcache pdo_mysql soap zip
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
@@ -25,11 +37,11 @@ RUN rm -rf /var/lib/apt
 RUN rm -rf /usr/src/php
 
 # Install extra helper stuff
-RUN curl -sL https://getcomposer.org/download/1.2.0/composer.phar -o /usr/local/bin/composer
+RUN curl -sL https://getcomposer.org/download/1.2.1/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN curl -sL https://files.magerun.net/n98-magerun-1.97.22.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
-RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v0.23.1/wp-cli-0.23.1.phar -o /usr/local/bin/wp-cli
+RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v0.24.1/wp-cli-0.24.1.phar -o /usr/local/bin/wp-cli
 RUN chmod +x /usr/local/bin/wp-cli
 
 # Install config files and tester site

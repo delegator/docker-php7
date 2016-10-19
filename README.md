@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/delegator/php7.svg)](http://microbadger.com/images/delegator/php7)
 
-[Debian][1] for PHP web applications, based on `php:7.0.9-fpm`. Use this image as
+[Debian][1] for PHP web applications, based on `php:7.0.12-fpm`. Use this image as
 a base for your own Docker images.
 
 # Image contents
@@ -14,11 +14,13 @@ Latest stable versions of:
  - [Ruby][4] and [node.js][5] for any asset building processes you might have
 
 Handy PHP command-line tools:
+
  - [composer][6]
  - [n98-magerun][7]
  - [wp-cli][8]
 
 # Building this image from source
+
 ```bash
 # Describe available make targets
 $ make help
