@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/delegator/php7.svg)](http://microbadger.com/images/delegator/php7)
 
-[Debian][1] for PHP web applications, based on `php:7.0.12-fpm`. Use this image as
+[Debian][1] for PHP web applications, based on `php:7.0.13-fpm`. Use this image as
 a base for your own Docker images.
 
 # Image contents
@@ -58,7 +58,9 @@ email-as-a-service provider. Be sure to override all files under `/etc/nullmaile
 
 An example `remotes` entry for Amazon SES SMTP:
 
-`email-smtp.us-east-1.amazonaws.com smtp --port=587 --starttls --user=your_username_here --pass=your_password_here`
+```
+email-smtp.us-east-1.amazonaws.com smtp --port=587 --starttls --user=your_username_here --pass=your_password_here
+```
 
 [1]: https://www.debian.org/
 [2]: http://nginx.org/
