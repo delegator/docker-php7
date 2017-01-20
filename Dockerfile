@@ -1,4 +1,4 @@
-FROM php:7.0.13-fpm
+FROM php:7.1.0-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -37,12 +37,12 @@ RUN rm -rf /var/lib/apt
 RUN rm -rf /usr/src/php
 
 # Install extra helper stuff
-RUN curl -sL https://getcomposer.org/download/1.2.1/composer.phar -o /usr/local/bin/composer
+RUN curl -sL https://getcomposer.org/download/1.3.1/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
-RUN curl -sL https://files.magerun.net/n98-magerun-1.97.22.phar -o /usr/local/bin/n98-magerun
+RUN curl -sL https://files.magerun.net/n98-magerun-1.97.27.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
-RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v0.24.1/wp-cli-0.24.1.phar -o /usr/local/bin/wp-cli
-RUN chmod +x /usr/local/bin/wp-cli
+RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v1.0.0/wp-cli-1.0.0.phar -o /usr/local/bin/wp
+RUN chmod +x /usr/local/bin/wp
 
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx
