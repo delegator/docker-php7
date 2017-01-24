@@ -1,4 +1,4 @@
-FROM php:7.1.0-fpm
+FROM php:7.0.15-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
