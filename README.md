@@ -1,7 +1,6 @@
 # delegator/php7
 
 [![](https://images.microbadger.com/badges/image/delegator/php7.svg)](http://microbadger.com/images/delegator/php7)
-[![](https://images.microbadger.com/badges/version/delegator/php7.svg)](https://microbadger.com/images/delegator/php7)
 
 [Debian][1] for PHP web applications, based on `php:7.0.15-fpm`. Use this image as
 a base for your own Docker images.
