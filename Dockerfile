@@ -25,10 +25,10 @@ RUN apt-get install -qy \
     curl htop git vim wget \
     nodejs yarn ruby ruby-dev libmcrypt4 libxml2-utils \
     libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
-    libpng12-dev libxml2-dev zlib1g-dev
-RUN docker-php-ext-install bcmath mcrypt opcache pdo_mysql soap zip
+    libpng12-dev libxml2-dev zlib1g-dev libicu-dev libxslt1-dev
+RUN docker-php-ext-install -j$(nproc) bcmath intl mcrypt opcache pdo_mysql soap xsl zip
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install gd
+RUN docker-php-ext-install -j$(nproc) gd
 RUN apt-get clean -qy
 RUN rm -f /etc/nginx/sites-enabled/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
