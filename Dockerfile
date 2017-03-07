@@ -1,8 +1,6 @@
 FROM php:7.0.16-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
-ENV DEBIAN_FRONTEND=noninteractive
-
 # Pre-repository setup: Add support for HTTPS repositories
 RUN apt-get update -q
 RUN apt-get install -qy apt-transport-https
@@ -18,14 +16,22 @@ COPY ./config/etc/apt/sources.list.d/nodesource.list /etc/apt/sources.list.d/nod
 # Install packages
 RUN apt-get update -q
 RUN apt-get upgrade -qy
-RUN apt-get install -qy \
-    bash nginx-full supervisor \
-    mysql-client redis-tools nullmailer \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy \
+    bash supervisor \
     build-essential hardening-wrapper \
     curl htop git vim wget \
-    nodejs yarn ruby ruby-dev libmcrypt4 libxml2-utils \
-    libcurl4-openssl-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
-    libpng12-dev libxml2-dev zlib1g-dev libicu-dev libxslt1-dev
+    nginx-full mysql-client redis-tools nullmailer \
+    nodejs yarn \
+    ruby ruby-dev \
+    libxml2-utils \
+    libcurl4-openssl-dev \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg62-turbo-dev \
+    libmcrypt-dev \
+    libpng12-dev \
+    libxml2-dev libxslt1-dev \
+    zlib1g-dev
 RUN docker-php-ext-install -j$(nproc) bcmath intl mcrypt opcache pdo_mysql soap xsl zip
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd
@@ -41,6 +47,8 @@ RUN curl -sL https://getcomposer.org/download/1.3.2/composer.phar -o /usr/local/
 RUN chmod +x /usr/local/bin/composer
 RUN curl -sL https://files.magerun.net/n98-magerun-1.97.28.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
+RUN curl -sL https://files.magerun.net/n98-magerun2-1.3.3.phar -o /usr/local/bin/n98-magerun2
+RUN chmod +x /usr/local/bin/n98-magerun2
 RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v1.1.0/wp-cli-1.1.0.phar -o /usr/local/bin/wp
 RUN chmod +x /usr/local/bin/wp
 
