@@ -16,7 +16,8 @@ Core components:
 Handy PHP command-line tools:
 
  - [composer][6]
- - [n98-magerun][7]
+ - [n98-magerun][magerun]
+ - [n98-magerun2][magerun2]
  - [wp-cli][8]
 
 # Building this image from source
@@ -68,5 +69,6 @@ email-smtp.us-east-1.amazonaws.com smtp --port=587 --starttls --user=your_userna
 [4]: https://www.ruby-lang.org/en/
 [5]: https://nodejs.org/
 [6]: https://getcomposer.org/
-[7]: http://magerun.net/
 [8]: http://wp-cli.org/
+[magerun]: https://github.com/netz98/n98-magerun
+[magerun2]: https://github.com/netz98/n98-magerun2
