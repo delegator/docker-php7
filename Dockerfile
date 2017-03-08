@@ -22,7 +22,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     curl htop git vim wget \
     nginx-full mysql-client redis-tools nullmailer \
     nodejs yarn \
-    ruby ruby-dev \
+    ruby ruby-dev rake \
     libxml2-utils \
     libcurl4-openssl-dev \
     libfreetype6-dev \
