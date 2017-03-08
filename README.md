@@ -23,21 +23,21 @@ Handy PHP command-line tools:
 # Building this image from source
 
 ```bash
-# Describe available make targets
-$ make help
+# Describe available rake targets
+$ rake -T
 
 # Plain, vanilla, just-build-the-image command
-$ make
+$ rake
 
 # Use cache when building layers (useful for debugging)
-$ make build
+$ rake build
 ```
 
 # Testing this image
 
 ```bash
 # Visit http://localhost:3000/ in your favorite browser
-$ make test
+$ rake test
 ```
 
 # Customizing your derived image
