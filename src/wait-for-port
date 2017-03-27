@@ -17,7 +17,7 @@ server = "#{host}:#{port}"
 begin
   puts "Checking for #{server} readiness, #{retries} tries remaining"
   s = TCPSocket.new(host, port)
-rescue Errno => e
+rescue Errno
   puts "Could not connect to #{server}, retrying in #{sleep_duration}s"
   sleep(sleep_duration)
   sleep_duration *= 2
