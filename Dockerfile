@@ -43,6 +43,7 @@ RUN rm -rf /var/lib/apt
 RUN rm -rf /usr/src/php
 
 # Install extra helper stuff
+COPY src/wait-for-port /usr/local/bin/wait-for-port
 RUN curl -sL https://getcomposer.org/download/1.3.2/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN curl -sL https://files.magerun.net/n98-magerun-1.97.28.phar -o /usr/local/bin/n98-magerun
