@@ -33,8 +33,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     libxml2-dev libxslt1-dev \
     zlib1g-dev
 RUN docker-php-ext-install -j$(nproc) bcmath intl mcrypt opcache pdo_mysql soap xsl zip
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install -j$(nproc) gd
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd
+RUN pecl install xdebug-2.5.1
 RUN apt-get clean -qy
 RUN rm -f /etc/nginx/sites-enabled/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
@@ -44,11 +45,11 @@ RUN rm -rf /usr/src/php
 
 # Install extra helper stuff
 COPY src/wait-for-port /usr/local/bin/wait-for-port
-RUN curl -sL https://getcomposer.org/download/1.3.2/composer.phar -o /usr/local/bin/composer
+RUN curl -sL https://getcomposer.org/download/1.4.1/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN curl -sL https://files.magerun.net/n98-magerun-1.97.28.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
-RUN curl -sL https://files.magerun.net/n98-magerun2-1.3.3.phar -o /usr/local/bin/n98-magerun2
+RUN curl -sL https://files.magerun.net/n98-magerun2-1.4.0.phar -o /usr/local/bin/n98-magerun2
 RUN chmod +x /usr/local/bin/n98-magerun2
 RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v1.1.0/wp-cli-1.1.0.phar -o /usr/local/bin/wp
 RUN chmod +x /usr/local/bin/wp
