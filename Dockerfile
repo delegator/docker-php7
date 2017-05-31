@@ -1,4 +1,4 @@
-FROM php:7.0.18-fpm
+FROM php:7.0.19-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Pre-repository setup: Add support for HTTPS repositories
@@ -45,9 +45,9 @@ RUN rm -rf /usr/src/php
 
 # Install extra helper stuff
 COPY src/wait-for-port /usr/local/bin/wait-for-port
-RUN curl -sL https://getcomposer.org/download/1.4.1/composer.phar -o /usr/local/bin/composer
+RUN curl -sL https://getcomposer.org/download/1.4.2/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
-RUN curl -sL https://files.magerun.net/n98-magerun-1.97.28.phar -o /usr/local/bin/n98-magerun
+RUN curl -sL https://files.magerun.net/n98-magerun-1.97.30.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
 RUN curl -sL https://files.magerun.net/n98-magerun2-1.4.0.phar -o /usr/local/bin/n98-magerun2
 RUN chmod +x /usr/local/bin/n98-magerun2
