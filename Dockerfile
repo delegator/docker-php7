@@ -1,4 +1,4 @@
-FROM php:7.0.21-fpm
+FROM php:7.0.22-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Pre-repository setup: Add support for HTTPS repositories
@@ -20,7 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     bash supervisor \
     build-essential hardening-wrapper \
     curl htop git vim wget \
-    nginx-full mysql-client redis-tools nullmailer \
+    nginx-extras mysql-client redis-tools nullmailer \
     nodejs yarn \
     ruby ruby-dev rake \
     libxml2-utils \
