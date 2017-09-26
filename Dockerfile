@@ -6,7 +6,7 @@ RUN apt-get update -q
 RUN apt-get install -qy apt-transport-https
 
 # Repository: Yarn package manager
-RUN apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 COPY ./config/etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list
 
 # Repository: Node.js 4
