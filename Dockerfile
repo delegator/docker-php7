@@ -49,7 +49,7 @@ RUN curl -sL https://getcomposer.org/download/1.4.2/composer.phar -o /usr/local/
 RUN chmod +x /usr/local/bin/composer
 RUN curl -sL https://files.magerun.net/n98-magerun-1.97.30.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
-RUN curl -sL https://files.magerun.net/n98-magerun2-1.4.0.phar -o /usr/local/bin/n98-magerun2
+RUN curl -sL https://files.magerun.net/n98-magerun2-1.6.0.phar -o /usr/local/bin/n98-magerun2
 RUN chmod +x /usr/local/bin/n98-magerun2
 RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v1.1.0/wp-cli-1.1.0.phar -o /usr/local/bin/wp
 RUN chmod +x /usr/local/bin/wp
