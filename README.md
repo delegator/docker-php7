@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/delegator/php7.svg)](http://microbadger.com/images/delegator/php7)
 
-[Debian][1] for PHP web applications, based on `php:7.0.22-fpm`. Use this image as
+[Debian][1] for PHP web applications, based on `php:7.1.10-fpm`. Use this image as
 a base for your own Docker images.
 
 # Image contents
@@ -10,13 +10,12 @@ a base for your own Docker images.
 Core components:
 
  - [Nginx][2] web server
- - [PHP][3] with all modules required by Magento, Magento 2, and WordPress
+ - [PHP][3] with all modules required by Magento 2 and WordPress
  - [Ruby][4] and [node.js][5] for any asset building processes you might have
 
 Handy PHP command-line tools:
 
  - [composer][6]
- - [n98-magerun][magerun]
  - [n98-magerun2][magerun2]
  - [wp-cli][8]
 
