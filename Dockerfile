@@ -1,4 +1,4 @@
-FROM php:7.1.10-fpm
+FROM php:7.0.24-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Pre-repository setup: Add support for HTTPS repositories
@@ -47,7 +47,7 @@ RUN rm -rf /usr/src/php
 COPY src/wait-for-port /usr/local/bin/wait-for-port
 RUN curl -sL https://getcomposer.org/download/1.5.2/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
-RUN curl -sL https://files.magerun.net/n98-magerun2-1.6.0.phar -o /usr/local/bin/n98-magerun2
+RUN curl -sL https://files.magerun.net/n98-magerun-1.100.0.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun2
 RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v1.3.0/wp-cli-1.3.0.phar -o /usr/local/bin/wp
 RUN chmod +x /usr/local/bin/wp
