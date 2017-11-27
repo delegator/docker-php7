@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/delegator/php7.svg)](http://microbadger.com/images/delegator/php7)
 
-[Debian][1] for PHP web applications, based on `php:7.1.10-fpm`. Use this image as
+[Debian][1] for PHP web applications, based on `php:7.0.25-fpm`. Use this image as
 a base for your own Docker images.
 
 # Image contents
@@ -16,7 +16,7 @@ Core components:
 Handy PHP command-line tools:
 
  - [composer][6]
- - [n98-magerun2][magerun2]
+ - [n98-magerun][magerun]
  - [wp-cli][8]
 
 # Building this image from source
@@ -70,4 +70,3 @@ email-smtp.us-east-1.amazonaws.com smtp --port=587 --starttls --user=your_userna
 [6]: https://getcomposer.org/
 [8]: http://wp-cli.org/
 [magerun]: https://github.com/netz98/n98-magerun
-[magerun2]: https://github.com/netz98/n98-magerun2
