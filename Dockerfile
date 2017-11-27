@@ -1,4 +1,4 @@
-FROM php:7.1.12-fpm
+FROM php:7.1.11-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Pre-repository setup: Add support for HTTPS repositories
@@ -55,6 +55,7 @@ RUN chmod +x /usr/local/bin/wp
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx
 COPY ./config/php /usr/local/etc/php
+COPY ./config/php-fpm /usr/local/etc/php-fpm.d
 COPY ./config/supervisor/conf.d /etc/supervisor/conf.d
 COPY ./tester /usr/share/nginx/tester
 

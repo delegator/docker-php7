@@ -19,5 +19,5 @@ end
 
 desc 'Run the docker image locally for testing'
 task :test do
-  sh 'docker run --rm -p 3000:80 delegator/php7'
+  sh 'docker run --cap-add SYS_PTRACE --rm -p 3000:80 delegator/php7'
 end
