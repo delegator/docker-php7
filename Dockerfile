@@ -2,8 +2,8 @@ FROM php:7.0.27-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Pre-repository setup: Add support for HTTPS repositories
-RUN apt-get update -q
-RUN apt-get install -qy apt-transport-https
+RUN apt-get update -q \
+ && apt-get install -qy apt-transport-https
 
 # Repository: Yarn package manager
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -13,10 +13,13 @@ COPY ./config/etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list
 RUN curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 COPY ./config/etc/apt/sources.list.d/nodesource.list /etc/apt/sources.list.d/nodesource.list
 
+# Post-repository setup: update packages
+RUN apt-get update -q \
+ && apt-get upgrade -qy
+
 # Install packages
-RUN apt-get update -q
-RUN apt-get upgrade -qy
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy \
+RUN devDependencies="libcurl4-openssl-dev libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxml2-dev libxslt1-dev zlib1g-dev" \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     bash supervisor \
     build-essential hardening-wrapper \
     curl htop git vim wget \
@@ -24,33 +27,25 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     nodejs yarn \
     ruby ruby-dev rake \
     libxml2-utils \
-    libcurl4-openssl-dev \
-    libfreetype6-dev \
-    libicu-dev \
-    libjpeg62-turbo-dev \
-    libmcrypt-dev \
-    libpng12-dev \
-    libxml2-dev libxslt1-dev \
-    zlib1g-dev
-RUN docker-php-ext-install -j$(nproc) bcmath intl mcrypt opcache pdo_mysql soap xsl zip
+    $devDependencies
+
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd
-RUN pecl install xdebug-2.5.5
-RUN apt-get clean -qy
-RUN rm -f /etc/nginx/sites-enabled/default
-RUN ln -sf /dev/stdout /var/log/nginx/access.log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
-RUN rm -rf /var/lib/apt
-RUN rm -rf /usr/src/php
+ && docker-php-ext-install -j$(nproc) bcmath intl gd mcrypt opcache pdo_mysql soap xsl zip \
+ && pecl install xdebug-2.5.5
+
+RUN apt-get purge --auto-remove -qy $devDependencies \
+ && rm -rf /var/lib/apt \
+ && rm -rf /usr/src/php \
+ && rm -f /etc/nginx/sites-enabled/default \
+ && ln -sf /dev/stdout /var/log/nginx/access.log \
+ && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Install extra helper stuff
 COPY src/wait-for-port /usr/local/bin/wait-for-port
-RUN curl -sL https://getcomposer.org/download/1.5.2/composer.phar -o /usr/local/bin/composer
+RUN curl -sL https://getcomposer.org/download/1.6.2/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN curl -sL https://files.magerun.net/n98-magerun-1.100.0.phar -o /usr/local/bin/n98-magerun
 RUN chmod +x /usr/local/bin/n98-magerun
-RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v1.3.0/wp-cli-1.3.0.phar -o /usr/local/bin/wp
-RUN chmod +x /usr/local/bin/wp
 
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx
