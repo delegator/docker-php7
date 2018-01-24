@@ -1,33 +1,37 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env php
+<?php
 
-require 'socket'
+if (count($argv) < 3) {
+    fprintf(STDERR, "Usage: {$argv[0]} <hostname> <port_number>\n");
+    exit(1);
+}
 
-if ARGV.length != 2
-  puts "Usage: #{PROGRAM_NAME} <hostname> <port_number>"
-  exit 1
-end
+$sleep_duration = 1;
+$retries = 10;
 
-sleep_duration = 1
-retries = 10
+$host = $argv[1];
+$port = $argv[2];
+$server = "{$host}:{$port}";
+$socket = null;
 
-host = ARGV[0]
-port = ARGV[1]
-server = "#{host}:#{port}"
+for (;;) {
+    echo "Checking for {$server} readiness, {$retries} tries remaining\n";
+    $socket = @fsockopen($host, $port);
 
-begin
-  puts "Checking for #{server} readiness, #{retries} tries remaining"
-  s = TCPSocket.new(host, port)
-rescue Errno::ECONNREFUSED
-  puts "Could not connect to #{server}, retrying in #{sleep_duration}s"
-  sleep(sleep_duration)
-  sleep_duration *= 2
-  retries -= 1
-  retry if retries > 0
+    if ($socket !== FALSE) {
+        break;
+    }
 
-  puts "Failed to connect to #{server}"
-  exit 2
-ensure
-  s.close unless s.nil?
-end
+    echo "Could not connect to {$server}, retrying in {$sleep_duration}s\n";
+    sleep($sleep_duration);
+    $sleep_duration *= 2;
+    $retries -= 1;
 
-puts "✓ Connected to #{server}"
+    if ($retries <= 0) {
+        echo "Failed to connect to {$server}\n";
+        exit(2);
+    }
+}
+
+fclose($socket);
+echo "✓ Connected to {$server}\n";
