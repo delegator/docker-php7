@@ -26,6 +26,7 @@ RUN devDependencies="libcurl4-openssl-dev libfreetype6-dev libicu-dev libjpeg62-
     nginx-extras mysql-client redis-tools nullmailer \
     nodejs yarn \
     ruby ruby-dev rake \
+    libmcrypt4 \
     libxml2-utils \
     $devDependencies \
  && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
