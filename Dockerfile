@@ -27,13 +27,11 @@ RUN devDependencies="libcurl4-openssl-dev libfreetype6-dev libicu-dev libjpeg62-
     nodejs yarn \
     ruby ruby-dev rake \
     libxml2-utils \
-    $devDependencies
-
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
- && docker-php-ext-install -j$(nproc) bcmath intl gd mcrypt opcache pdo_mysql soap xsl zip \
- && pecl install xdebug-2.5.5
-
-RUN apt-get purge --auto-remove -qy $devDependencies \
+    $devDependencies \
+ && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+ && docker-php-ext-install -j$(nproc) bcmath gd intl mcrypt opcache pdo_mysql soap xsl zip \
+ && pecl install xdebug-2.5.5 \
+ && apt-get purge --auto-remove -qy $devDependencies \
  && rm -rf /var/lib/apt \
  && rm -rf /usr/src/php \
  && rm -f /etc/nginx/sites-enabled/default \
