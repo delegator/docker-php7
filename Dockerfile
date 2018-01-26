@@ -25,7 +25,7 @@ RUN devDependencies="libcurl4-openssl-dev libfreetype6-dev libicu-dev libjpeg62-
     curl htop git vim wget \
     nginx-extras mysql-client redis-tools nullmailer \
     nodejs yarn \
-    ruby ruby-dev rake ruby-bundler \
+    ruby ruby-dev rake \
     libmcrypt4 \
     libxml2-utils \
     $devDependencies
