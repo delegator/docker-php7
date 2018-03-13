@@ -1,4 +1,4 @@
-FROM php:7.0.27-fpm
+FROM php:7.0.28-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Pre-repository setup: Add support for HTTPS repositories
