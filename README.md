@@ -10,7 +10,7 @@ a base for your own Docker images.
 Core components:
 
  - [Nginx][2] web server
- - [PHP][3] with all modules required by Magento 2 and WordPress
+ - [PHP][3] with all modules required by Magento 2
  - [Ruby][4] and [node.js][5] for any asset building processes you might have
 
 Handy PHP command-line tools:

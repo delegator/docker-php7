@@ -45,12 +45,10 @@ RUN rm -rf /usr/src/php
 
 # Install extra helper stuff
 COPY src/wait-for-port /usr/local/bin/wait-for-port
-RUN curl -sL https://getcomposer.org/download/1.5.2/composer.phar -o /usr/local/bin/composer
+RUN curl -sL https://getcomposer.org/download/1.6.3/composer.phar -o /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
-RUN curl -sL https://files.magerun.net/n98-magerun2-1.6.0.phar -o /usr/local/bin/n98-magerun2
+RUN curl -sL https://files.magerun.net/n98-magerun2-2.1.2.phar -o /usr/local/bin/n98-magerun2
 RUN chmod +x /usr/local/bin/n98-magerun2
-RUN curl -sL https://github.com/wp-cli/wp-cli/releases/download/v1.3.0/wp-cli-1.3.0.phar -o /usr/local/bin/wp
-RUN chmod +x /usr/local/bin/wp
 
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx
