@@ -2,8 +2,8 @@
 
 [![](https://images.microbadger.com/badges/image/delegator/php7:7.0.svg)](https://microbadger.com/images/delegator/php7:7.0)
 
-[Debian][1] for PHP web applications, based on `php:7.0.28-fpm`. Use this image as
-a base for your own Docker images.
+[Debian][1] for PHP web applications, based on `php:7.0.29-fpm`. Use this image
+as a base for your own Docker images.
 
 # Image contents
 
