@@ -23,7 +23,8 @@ RUN devDependencies="libcurl4-openssl-dev libfreetype6-dev libicu-dev libjpeg62-
     bash supervisor \
     build-essential \
     curl htop git vim wget \
-    nginx-extras mysql-client redis-tools nullmailer \
+    nginx-light libnginx-mod-http-headers-more-filter \
+    mysql-client redis-tools nullmailer \
     nodejs yarn \
     ruby ruby-dev rake \
     sassc \
