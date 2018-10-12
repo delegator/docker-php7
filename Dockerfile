@@ -9,7 +9,7 @@ RUN apt-get update -q \
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 COPY ./config/etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list
 
-# Repository: Node.js 4
+# Repository: Node.js 8
 RUN curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 COPY ./config/etc/apt/sources.list.d/nodesource.list /etc/apt/sources.list.d/nodesource.list
 
