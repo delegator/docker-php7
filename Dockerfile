@@ -1,4 +1,4 @@
-FROM php:7.0.29-fpm
+FROM php:7.0.32-fpm
 MAINTAINER Tom Richards <tom.r@delegator.com>
 
 # Pre-repository setup: Add support for HTTPS repositories
@@ -32,7 +32,7 @@ RUN devDependencies="libcurl4-openssl-dev libfreetype6-dev libicu-dev libjpeg62-
 
 # Add PHP stuff
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
- && docker-php-ext-install -j$(nproc) bcmath gd intl mcrypt opcache pdo_mysql soap xsl zip \
+ && docker-php-ext-install -j$(nproc) bcmath gd intl mcrypt mysqli opcache pdo_mysql soap xsl zip \
  && pecl install xdebug-2.5.5
 
 # Cleanup
