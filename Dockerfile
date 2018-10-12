@@ -1,5 +1,5 @@
 FROM php:7.0.32-fpm
-MAINTAINER Tom Richards <tom.r@delegator.com>
+LABEL maintainer="Tom Richards <tom.r@delegator.com>"
 
 # Pre-repository setup: Add support for HTTPS repositories, GPG keys
 RUN apt-get update -q \
